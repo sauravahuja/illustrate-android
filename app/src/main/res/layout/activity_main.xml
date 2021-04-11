@@ -28,13 +28,25 @@
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnBrushSelection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_brush_24"
                 android:layout_margin="5dp"
                 android:onClick="onShowBrushDialog"
                 />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnColorSelection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_palette_24"
+                android:layout_margin="5dp"
+                android:onClick="onShowColorPicker"
+                />
+
         </com.google.android.material.bottomappbar.BottomAppBar>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
