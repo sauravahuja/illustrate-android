@@ -13,7 +13,9 @@ class DrawingBoardView(context:Context,attrs:AttributeSet) : View(context, attrs
     private var canvasPaint: Paint? = null
     private var canvas: Canvas? = null
     private var brushSize:Float = 0.0F
-    private var color = Color.BLACK
+    private var color = Color.RED
+
+    private val pathsList = ArrayList<CustomPath>()
 
     init {
         setUpDrawing()
@@ -45,11 +47,17 @@ class DrawingBoardView(context:Context,attrs:AttributeSet) : View(context, attrs
         super.onDraw(canvas)
 
         canvas?.drawBitmap(canvasBitmap!!,0F,0F,canvasPaint)
-
+    // for on going display
         if(! drawingPath!!.isEmpty){
             drawingPaint!!.strokeWidth = drawingPath!!.brushThickness
             drawingPaint!!.color = drawingPath!!.color
             canvas?.drawPath(drawingPath!!,drawingPaint!!)
+        }
+        // for persistant
+        for (path in pathsList){
+                drawingPaint!!.strokeWidth = path.brushThickness
+                drawingPaint!!.color = path.color
+                canvas?.drawPath(path,drawingPaint!!)
         }
     }
 
@@ -77,6 +85,7 @@ class DrawingBoardView(context:Context,attrs:AttributeSet) : View(context, attrs
                 }
             }
             MotionEvent.ACTION_UP -> {
+                pathsList.add(drawingPath!!)
                 drawingPath = CustomPath(color,brushSize)
             }
 
